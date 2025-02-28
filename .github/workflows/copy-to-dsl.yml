@@ -1,30 +1,29 @@
 name: Copy DOC to DSL
 
-# Указываем, когда workflow должен запускаться
 on:
   push:
     branches:
-      - master  # Запускать только при изменении в ветке master
+      - main  # Запускать только при изменении в ветке main
 
 jobs:
   copy:
-    runs-on: ubuntu-latest  # Используем последнюю версию Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       # Шаг 1: Клонируем репозиторий DOC
       - name: Checkout DOC
         uses: actions/checkout@v3
 
-      # Шаг 2: Клонируем репозиторий DSL
+      # Шаг 2: Клонируем репозиторий DSL с использованием PAT
       - name: Clone DSL
         run: |
-          git clone "pangea-gh:NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git"
+          git clone https://${{ secrets.DSL_PAT }}@github.com/NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git
 
       # Шаг 3: Копируем содержимое DOC в папку doc репозитория DSL
       - name: Copy DOC to DSL/doc
         run: |
-          mkdir -p Test-git-reset-Workspace-DSL/doc  # Создаем папку doc, если её нет
-          cp -r * Test-git-reset-Workspace-DSL/doc/  # Копируем всё содержимое DOC в DSL/doc
+          mkdir -p Test-git-reset-Workspace-DSL/doc
+          cp -r * Test-git-reset-Workspace-DSL/doc/
           cd Test-git-reset-Workspace-DSL
 
       # Шаг 4: Настраиваем Git для фиксации изменений
@@ -39,4 +38,4 @@ jobs:
           cd Test-git-reset-Workspace-DSL
           git add .
           git commit -m "Автоматическое обновление DOC из репозитория Test--doc"
-          git push "pangea-gh:NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git" master
+          git push https://${{ secrets.DSL_PAT }}@github.com/NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git main
