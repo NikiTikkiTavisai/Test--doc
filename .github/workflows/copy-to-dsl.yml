@@ -18,7 +18,7 @@ jobs:
       # Шаг 2: Клонируем репозиторий DSL
       - name: Clone DSL
         run: |
-          git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git
+          git clone "pangea-gh:NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git"
 
       # Шаг 3: Копируем содержимое DOC в папку doc репозитория DSL
       - name: Copy DOC to DSL/doc
@@ -39,4 +39,4 @@ jobs:
           cd Test-git-reset-Workspace-DSL
           git add .
           git commit -m "Автоматическое обновление DOC из репозитория Test--doc"
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git master
+          git push "pangea-gh:NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git" master
