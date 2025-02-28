@@ -25,11 +25,8 @@ jobs:
           # Убедимся, что папка doc существует
           mkdir -p Test-git-reset-Workspace-DSL/doc
 
-          # Переходим в репозиторий DOC
-          cd $GITHUB_WORKSPACE
-
           # Копируем только содержимое DOC, исключая скрытые файлы (например, .git)
-          rsync -av --exclude='.git' --exclude='Test-git-reset-Workspace-DSL' . ../Test-git-reset-Workspace-DSL/doc/
+          rsync -av --exclude='.git' --exclude='Test-git-reset-Workspace-DSL' $GITHUB_WORKSPACE/ Test-git-reset-Workspace-DSL/doc/
 
       # Шаг 4: Настраиваем Git для фиксации изменений
       - name: Configure Git
