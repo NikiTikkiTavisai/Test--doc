@@ -3,7 +3,7 @@ name: Copy DOC to DSL
 on:
   push:
     branches:
-      - main  # Запускать только при изменении в ветке main
+      - master  # Запускать только при изменении в ветке main
 
 jobs:
   copy:
@@ -38,4 +38,4 @@ jobs:
           cd Test-git-reset-Workspace-DSL
           git add .
           git commit -m "Автоматическое обновление DOC из репозитория Test--doc"
-          git push https://${{ secrets.DSL_PAT }}@github.com/NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git main
+          git push https://${{ secrets.DSL_PAT }}@github.com/NikiTikkiTavisai/Test-git-reset-Workspace-DSL.git master
